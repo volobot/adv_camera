@@ -739,15 +739,15 @@ public class AdvCamera implements MethodChannel.MethodCallHandler,
             @Override
             public void onOrientationChanged(int iAngle) {
 
-                final int iLookup[] = {0, 0, 0, 90, 90, 90, 90, 90, 90, 180, 180, 180, 180, 180, 180, 270, 270, 270, 270, 270, 270, 0, 0, 0}; // 15-degree increments
-                if (iAngle != ORIENTATION_UNKNOWN) {
-
-                    int iNewOrientation = iLookup[iAngle / 15];
-                    if (iOrientation != iNewOrientation) {
-                        iOrientation = iNewOrientation;
-                    }
-                    mPhotoAngle = normalize(iAngle);
-                }
+//                final int iLookup[] = {0, 0, 0, 90, 90, 90, 90, 90, 90, 180, 180, 180, 180, 180, 180, 270, 270, 270, 270, 270, 270, 0, 0, 0}; // 15-degree increments
+//                if (iAngle != ORIENTATION_UNKNOWN) {
+//
+//                    int iNewOrientation = iLookup[iAngle / 15];
+//                    if (iOrientation != iNewOrientation) {
+//                        iOrientation = iNewOrientation;
+//                    }
+//                    mPhotoAngle = normalize(iAngle);
+//                }
             }
         };
 
