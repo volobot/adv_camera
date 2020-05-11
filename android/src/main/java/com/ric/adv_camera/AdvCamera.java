@@ -60,7 +60,7 @@ public class AdvCamera implements MethodChannel.MethodCallHandler,
     private String savePath;
     private String fileNamePrefix = "adv_camera";
     private int iOrientation = 0;
-    private int mPhotoAngle = 90;
+    private int mPhotoAngle = 0;
     private String previewRatio;
     private float mDist;
     private Camera.Size pictureSize;
