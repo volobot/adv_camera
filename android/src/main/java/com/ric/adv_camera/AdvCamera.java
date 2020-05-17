@@ -196,7 +196,7 @@ public class AdvCamera implements MethodChannel.MethodCallHandler,
     @Override
     public void onMethodCall(MethodCall methodCall, MethodChannel.Result result) {
         if (methodCall.method.equals("waitForCamera")) {
-            result.success(null);
+            result.success(camera!=null);
         } else if (methodCall.method.equals("setPreviewRatio")) {
             String previewRatio = "";
 

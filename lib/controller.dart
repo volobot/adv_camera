@@ -14,11 +14,14 @@ class AdvCameraController {
     _AdvCameraState advCameraState,
   ) async {
     assert(id != null);
-    final MethodChannel channel = MethodChannel('plugins.flutter.io/adv_camera/$id');
+    final MethodChannel channel =
+        MethodChannel('plugins.flutter.io/adv_camera/$id');
     // TODO(amirh): remove this on when the invokeMethod update makes it to stable Flutter.
     // https://github.com/flutter/flutter/issues/26431
     // ignore: strong_mode_implicit_dynamic_method
-    await channel.invokeMethod('waitForCamera');
+    while (!await channel.invokeMethod('waitForCamera')) {
+      await Future.delayed(Duration(milliseconds: 100));
+    }
     return AdvCameraController._(
       channel,
       advCameraState,
@@ -94,7 +97,8 @@ class AdvCameraController {
         break;
     }
 
-    bool success = await channel.invokeMethod('setPreviewRatio', <String, dynamic>{
+    bool success =
+        await channel.invokeMethod('setPreviewRatio', <String, dynamic>{
       'previewRatio': previewRatio,
     });
 
@@ -135,8 +139,8 @@ class AdvCameraController {
     // TODO(amirh): remove this on when the invokeMethod update makes it to stable Flutter.
     // https://github.com/flutter/flutter/issues/26431
     // ignore: strong_mode_implicit_dynamic_method
-    var x = await channel
-        .invokeMethod('setPictureSize', {"pictureWidth": width, "pictureHeight": height});
+    var x = await channel.invokeMethod(
+        'setPictureSize', {"pictureWidth": width, "pictureHeight": height});
 
     print("setPictureSize => $x");
   }
@@ -172,7 +176,8 @@ class AdvCameraController {
         flashTypeString = "torch";
         break;
     }
-    var x = await channel.invokeMethod('setFlashType', {"flashType": flashTypeString});
+    var x = await channel
+        .invokeMethod('setFlashType', {"flashType": flashTypeString});
 
     print("setFlashType => $x");
   }
